@@ -8,8 +8,13 @@ import scalaz._
 import org.http4s.scalatra.ScalatraService.Action
 
 object ScalatraExample extends ScalatraService {
+  def logSetStatus(newStatus: Status) = {
+    println("Previous status was: "+status)
+    status = newStatus
+  }
+
   GET("/gone") {
-    status = Status.Gone
+    logSetStatus(Status.Gone)
     s"status is ${status}"
   }
 
